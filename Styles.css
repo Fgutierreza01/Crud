@@ -2,7 +2,16 @@
     background-color: aquamarine;
 }
 .contenedor{
-    background-color: cadetblue;
+    align-items:flex-start;
+    justify-content: center;
+    display:flexbox;
+    text-align: center;
+    
+}
+.contenedor2{
+    padding: 10px;
+    margin: 10px;
+    display: inline;
 }
 .centrado{
     text-align:center;
