@@ -11,7 +11,7 @@ function llenarTabla(){
                 <h2>${dato.nombre}</h2>
                 <p>${dato.direccion}</p>
                 <div class="contenedor2">
-                    <button type="button" class="btn btn-primary">Editar</button>
+                    <button type="button" class="btn btn-primary editar">Editar</button>
                 </div>
                 <div class="contenedor2">
                     <button type="button" class="btn btn-danger eliminar" id=${index}>
@@ -23,13 +23,12 @@ function llenarTabla(){
 
    let deleteButtons = Array.from(document.getElementsByClassName('btn btn-danger eliminar'))
     deleteButtons.forEach((button)=>{
-    button.addEventListener('click', (event)=>deleteDatos(parseInt(event.target.id)))
-    //console.log(deleteButtons)
-
-})
+    button.addEventListener('click', (event)=>deleteDatos(parseInt(event.target.id)))})
+    let editButtons = Array.from(document.getElementsByClassName('btn btn-primary editar'))
+    editButtons.forEach((button)=>{
+    button.addEventListener('click', (event)=>editDatos(parseInt(event.target.id)))}) 
 }
 
-//llenarTabla()
 
 let inputNombre= document.getElementById('inputNombre')
 let inputAddress= document.getElementById('inputAddress')
@@ -49,21 +48,15 @@ function addDatos(){
     inputNombre.value=''
     inputAddress.value=''
 }
-
- /*let deleteButtons = Array.from(document.getElementsByClassName('btn btn-danger eliminar'))
- deleteButtons.forEach((button)=>{
-     button.addEventListener('click', (event)=>{console.log(event)})
-     //deleteDatos(event.target.index)
- })*/
-
-// function deleteDatos(nombre){
-//     agenda = agenda.filter((datos)=>datos.nombre!==nombre)
-//    // agenda=agenda.splice(id,1)
-//     console.log(agenda)
-//    llenarTabla()
    function deleteDatos(id){
     agenda = agenda.filter((datos)=>datos.indice!==id)
-   // agenda=agenda.splice(id,1)
-    console.log(agenda)
    llenarTabla()
 }
+  
+function editDatos(id){
+    agenda = agenda.filter((datos)=>datos.indice!==id)
+    inputNombre.value=(window.prompt("Ingrese nuevo nombre"))
+    inputAddress.value=(window.prompt("Ingrese nueva dirección"))
+    deleteDatos()
+    llenarTabla()
+  }
